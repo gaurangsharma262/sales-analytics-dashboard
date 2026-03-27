@@ -1,0 +1,41 @@
+Total Revenue: 8300065.813999999
+
+Top Countries:
+country
+United Kingdom    6767873.394
+Netherlands        284661.540
+EIRE               250285.220
+Germany            221698.210
+France             196712.840
+Name: totalprice, dtype: float64
+
+Top Products:
+description
+REGENCY CAKESTAND 3 TIER              132870.40
+WHITE HANGING HEART T-LIGHT HOLDER     93823.85
+JUMBO BAG RED RETROSPOT                83236.76
+PARTY BUNTING                          67687.53
+POSTAGE                                66710.24
+ASSORTED COLOUR BIRD ORNAMENT          56499.22
+RABBIT NIGHT LIGHT                     51137.80
+CHILLI LIGHTS                          45936.81
+PAPER CHAIN KIT 50'S CHRISTMAS         41500.48
+PICNIC BASKET WICKER 60 PIECES         39619.50
+Name: totalprice, dtype: float64
+
+Monthly Sales:
+month
+2010-12     554604.020
+2011-01     475074.380
+2011-02     436546.150
+2011-03     579964.610
+2011-04     426047.851
+2011-05     648251.080
+2011-06     608013.160
+2011-07     574238.481
+2011-08     616368.000
+2011-09     931440.372
+2011-10     974603.590
+2011-11    1132407.740
+2011-12     342506.380
+Freq: M, Name: totalprice, dtype: float64

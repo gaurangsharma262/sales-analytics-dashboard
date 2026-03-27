@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI';
+            background: #0f172a;
+            color: white;
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* KPI CARDS */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .kpi {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .kpi:hover {
+            transform: scale(1.05);
+        }
+
+        .kpi h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .kpi p {
+            margin: 5px;
+            color: #94a3b8;
+        }
+
+        /* FILTER */
+        form {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        select, input, button {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 6px;
+            border: none;
+        }
+
+        button {
+            background: #3b82f6;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* CHART GRID */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📊 Sales Analytics Dashboard</h1>
+
+    <!-- FILTER -->
+    <form method="POST">
+        <select name="country">
+            {% for c in country_list %}
+            <option value="{{ c }}">{{ c }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="date" name="start_date">
+        <input type="date" name="end_date">
+
+        <button type="submit">Apply</button>
+    </form>
+
+    <!-- KPI CARDS -->
+    <div class="kpi-grid">
+
+        <div class="kpi">
+            <p>Total Revenue</p>
+            <h2>₹ {{ total_revenue }}</h2>
+        </div>
+
+        <div class="kpi">
+            <p>Predicted Sales</p>
+            <h2>₹ {{ predicted_sales }}</h2>
+        </div>
+
+        <div class="kpi">
+            <p>Total Orders</p>
+            <h2>{{ months|length }}</h2>
+        </div>
+
+    </div>
+
+    <!-- CHARTS -->
+    <div class="chart-grid">
+
+        <div class="card">
+            <h3>🌍 Country Sales</h3>
+            <canvas id="countryChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h3>📈 Monthly Trend</h3>
+            <canvas id="monthlyChart"></canvas>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+new Chart(document.getElementById('countryChart'), {
+    type: 'bar',
+    data: {
+        labels: {{ country_labels | tojson }},
+        datasets: [{
+            label: 'Revenue',
+            data: {{ country_values | tojson }},
+            backgroundColor: '#3b82f6'
+        }]
+    },
+    options: {
+        plugins: { legend: { display: false } }
+    }
+});
+
+new Chart(document.getElementById('monthlyChart'), {
+    type: 'line',
+    data: {
+        labels: {{ months | tojson }},
+        datasets: [{
+            label: 'Sales Trend',
+            data: {{ monthly_values | tojson }},
+            borderColor: '#22c55e',
+            fill: false
+        }]
+    }
+});
+</script>
+
+</body>
+</html>
