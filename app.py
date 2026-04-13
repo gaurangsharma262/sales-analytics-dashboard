@@ -16,6 +16,9 @@ def load_data():
 def home():
     df = load_data()
 
+    # Get the unique countries before filtering happens so the dropdown always has every country
+    countries_list = ["All"] + sorted(df['country'].dropna().unique().tolist())
+
     selected_country = request.form.get('country')
     start_date = request.form.get('start_date')
     end_date = request.form.get('end_date')
@@ -40,8 +43,6 @@ def home():
 
     # 🔥 ML Prediction
     predicted_sales = predict_sales(df)
-
-    countries_list = ["All"] + sorted(load_data()['country'].dropna().unique().tolist())
 
     return render_template(
         'index.html',

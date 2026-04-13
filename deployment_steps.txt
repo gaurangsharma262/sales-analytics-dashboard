@@ -1,0 +1,47 @@
+======================================================
+     SALES INTELLIGENCE PROJECT - DEPLOYMENT GUIDE
+======================================================
+
+This guide explains how to deploy your lightweight Sales Analysis project for free using Render.com. We have already optimized the project by removing heavy dependencies and replacing them with fast native math calculations.
+
+Before starting, ensure your whole project is pushed to a repository on your GitHub account.
+
+------------------------------------------------------
+ STEP-BY-STEP DEPLOYMENT ON RENDER (100% FREE)
+------------------------------------------------------
+
+STEP 1: Log in to Render
+Go to https://render.com/ and sign up using your GitHub account.
+
+STEP 2: Create a New Web Service
+1. On the dashboard, click the "New +" button.
+2. Select "Web Service".
+3. Choose "Build and deploy from a Git repository".
+4. Follow the prompt to connect your GitHub account if you haven't already.
+5. Select your repository that contains your Sales Analysis project.
+
+STEP 3: Configure Your App
+Render will ask you to fill out details about the project. Fill them exactly like this:
+- Name: (Choose any name for your project, e.g., "sales-dashboard-ai")
+- Region: Choose the region nearest to you.
+- Branch: main (or whichever branch your code is on)
+- Root Directory: (Leave this completely blank)
+- Runtime: Python 3
+- Build Command: pip install -r requirements.txt
+- Start Command: gunicorn app:app
+
+STEP 4: Select the Free Tier
+Scroll down to the "Instance Type" section. Select the "Free" option ($0/month).
+
+STEP 5: Deploy!
+Click the "Create Web Service" button at the very bottom.
+
+------------------------------------------------------
+ WHAT HAPPENS NEXT?
+------------------------------------------------------
+Render will now read your code, install the required packages using the "pip install -r requirements.txt" command, and launch the server using "gunicorn".
+
+This usually takes about 2 to 3 minutes.
+Once it's finished, you'll see a green "Live" status, and Render will provide you with a permanent public link (e.g., https://sales-dashboard-ai.onrender.com). 
+
+You can click this link to view your live, highly-polished web application from any device!
