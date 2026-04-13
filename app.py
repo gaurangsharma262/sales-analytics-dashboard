@@ -44,10 +44,16 @@ def home():
     # 🔥 ML Prediction
     predicted_sales = predict_sales(df)
 
+    # Formatted Metrics for Template
+    total_revenue_formatted = f"{total_revenue:,.2f}"
+    predicted_sales_formatted = f"{predicted_sales:,.2f}"
+    months_length = len(list(monthly_sales.index))
+
     return render_template(
         'index.html',
-        total_revenue=total_revenue,
-        predicted_sales=predicted_sales,
+        total_revenue=total_revenue_formatted,
+        predicted_sales=predicted_sales_formatted,
+        months_length=months_length,
         country_labels=list(country_sales.index),
         country_values=list(country_sales.values),
         months=list(monthly_sales.index),
